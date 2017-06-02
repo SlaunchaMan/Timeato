@@ -8,6 +8,8 @@
 
 import Foundation
 
+fileprivate let defaultTimerLength = 25 // minutes
+
 enum SettingsKey: String {
     case timerLength
     case timerEndDate
@@ -17,7 +19,7 @@ enum SettingsKey: String {
 extension UserDefaults {
     
     func registerWatchDefaults() {
-        register(defaults: [.timerLength: 25])
+        register(defaults: [.timerLength: defaultTimerLength])
     }
     
     private func register(defaults: [SettingsKey: Any]) {

@@ -8,7 +8,6 @@
 
 import Foundation
 
-fileprivate let defaultTimerLength = 25 // minutes
 fileprivate let miniumumTimerLength = 1
 
 class TimerSettings {
