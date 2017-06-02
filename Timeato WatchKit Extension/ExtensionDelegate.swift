@@ -7,11 +7,15 @@
 //
 
 import WatchKit
+import WatchConnectivity
 import UserNotifications
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
     
     func applicationDidFinishLaunching() {
+        WCSession.default().delegate = self
+        WCSession.default().activate()
+        
         if #available(watchOSApplicationExtension 3.0, *) {
             UNUserNotificationCenter.current().delegate = self
         }
@@ -27,6 +31,20 @@ extension ExtensionDelegate: UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         // Present the notification fullscreen
         completionHandler([.alert, .sound])
+    }
+    
+}
+
+extension ExtensionDelegate: WCSessionDelegate {
+    
+    @available(watchOSApplicationExtension 2.2, *)
+    func session(_ session: WCSession,
+                 activationDidCompleteWith activationState: WCSessionActivationState,
+                 error: Error?) {
+        if let error = error {
+            NSLog("Error activating WCSession: %@",
+                  error.localizedDescription)
+        }
     }
     
 }

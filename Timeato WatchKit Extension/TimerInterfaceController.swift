@@ -9,6 +9,7 @@
 import Foundation
 import WatchKit
 import UserNotifications
+import WatchConnectivity
 
 class TimerInterfaceController: WKInterfaceController {
 
@@ -77,6 +78,12 @@ class TimerInterfaceController: WKInterfaceController {
                                  selector: #selector(timerCompletionTimerFired(_:)),
                                  userInfo: nil,
                                  repeats: false)
+        
+        WCSession.default().sendMessage(["EndDate": timerEndDate],
+                                        replyHandler: nil) { (error) in
+                                            NSLog("Error sending message: %@",
+                                                  error.localizedDescription)
+        }
         
         if #available(watchOSApplicationExtension 3.0, *) {
             UNUserNotificationCenter.current()

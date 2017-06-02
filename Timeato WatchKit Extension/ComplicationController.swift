@@ -53,4 +53,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         handler(nil)
     }
     
+    func getPlaceholderTemplate(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
+        handler(nil)
+    }
+    
 }
