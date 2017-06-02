@@ -1,14 +1,50 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="11055"/>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="12029"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--Timer Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModuleProvider="target"/>
+                <controller spacing="0.0" id="AgC-eL-Hgc" customClass="TimerInterfaceController" customModule="Timeato_WatchKit_App" customModuleProvider="target">
+                    <items>
+                        <group width="1" height="1" heightAdjustment="-40" alignment="center" layout="vertical" id="MR9-o3-Neq">
+                            <items>
+                                <label alignment="center" verticalAlignment="center" text="25:00" id="FBz-nK-P1Q">
+                                    <fontDescription key="font" type="boldSystem" pointSize="48"/>
+                                </label>
+                                <timer alignment="center" verticalAlignment="center" hidden="YES" enabled="YES" previewedSeconds="1500" id="2gh-t7-Hc6">
+                                    <fontDescription key="font" type="boldSystem" pointSize="48"/>
+                                    <calendarUnit key="units" minute="YES" second="YES"/>
+                                </timer>
+                            </items>
+                        </group>
+                        <button width="1" height="40" alignment="center" verticalAlignment="bottom" title="Start Timer" id="scS-2Z-acq">
+                            <color key="titleColor" red="0.26274511220000002" green="0.78431379800000001" blue="0.46274513010000001" alpha="1" colorSpace="deviceRGB"/>
+                            <connections>
+                                <action selector="startTimerButtonPressed" destination="AgC-eL-Hgc" id="OLm-xZ-kE8"/>
+                            </connections>
+                        </button>
+                        <button width="1" height="40" alignment="center" verticalAlignment="bottom" hidden="YES" title="Cancel Timer" id="0GW-Rj-Qo0">
+                            <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="cancelTimerButtonPressed" destination="AgC-eL-Hgc" id="JRM-2S-Eds"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="cancelTimerButton" destination="0GW-Rj-Qo0" id="C5f-eo-JvA"/>
+                        <outlet property="startTimerButton" destination="scS-2Z-acq" id="mug-oi-vOr"/>
+                        <outlet property="timer" destination="2gh-t7-Hc6" id="DYP-5g-2GA"/>
+                        <outlet property="timerPreviewLabel" destination="FBz-nK-P1Q" id="y9U-gL-Nba"/>
+                    </connections>
+                </controller>
             </objects>
             <point key="canvasLocation" x="220" y="345"/>
         </scene>
@@ -31,7 +67,7 @@
         <!--Notification Controller-->
         <scene sceneID="ZPc-GJ-vnh">
             <objects>
-                <controller id="4sK-HA-Art" customClass="NotificationController" customModuleProvider="target"/>
+                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="Timeato_WatchKit_App" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="468" y="643"/>
         </scene>

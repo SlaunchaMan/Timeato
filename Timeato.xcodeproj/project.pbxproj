@@ -16,7 +16,7 @@
 		1FDCB5CA1EE1ADE60010F61B /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FDCB5C81EE1ADE60010F61B /* Interface.storyboard */; };
 		1FDCB5CC1EE1ADE60010F61B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FDCB5CB1EE1ADE60010F61B /* Assets.xcassets */; };
 		1FDCB5D31EE1ADE60010F61B /* Timeato WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1FDCB5D21EE1ADE60010F61B /* Timeato WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		1FDCB5DA1EE1ADE60010F61B /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDCB5D91EE1ADE60010F61B /* InterfaceController.swift */; };
+		1FDCB5DA1EE1ADE60010F61B /* TimerInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDCB5D91EE1ADE60010F61B /* TimerInterfaceController.swift */; };
 		1FDCB5DC1EE1ADE60010F61B /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDCB5DB1EE1ADE60010F61B /* ExtensionDelegate.swift */; };
 		1FDCB5DE1EE1ADE60010F61B /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDCB5DD1EE1ADE60010F61B /* NotificationController.swift */; };
 		1FDCB5E01EE1ADE60010F61B /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDCB5DF1EE1ADE60010F61B /* ComplicationController.swift */; };
@@ -79,7 +79,7 @@
 		1FDCB5CD1EE1ADE60010F61B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FDCB5D21EE1ADE60010F61B /* Timeato WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Timeato WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FDCB5D81EE1ADE60010F61B /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
-		1FDCB5D91EE1ADE60010F61B /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		1FDCB5D91EE1ADE60010F61B /* TimerInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerInterfaceController.swift; sourceTree = "<group>"; };
 		1FDCB5DB1EE1ADE60010F61B /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		1FDCB5DD1EE1ADE60010F61B /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		1FDCB5DF1EE1ADE60010F61B /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
@@ -151,7 +151,7 @@
 		1FDCB5D61EE1ADE60010F61B /* Timeato WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				1FDCB5D91EE1ADE60010F61B /* InterfaceController.swift */,
+				1FDCB5D91EE1ADE60010F61B /* TimerInterfaceController.swift */,
 				1FDCB5DB1EE1ADE60010F61B /* ExtensionDelegate.swift */,
 				1FDCB5DD1EE1ADE60010F61B /* NotificationController.swift */,
 				1FDCB5DF1EE1ADE60010F61B /* ComplicationController.swift */,
@@ -320,7 +320,7 @@
 				1FDCB5DE1EE1ADE60010F61B /* NotificationController.swift in Sources */,
 				1FDCB5E01EE1ADE60010F61B /* ComplicationController.swift in Sources */,
 				1FDCB5DC1EE1ADE60010F61B /* ExtensionDelegate.swift in Sources */,
-				1FDCB5DA1EE1ADE60010F61B /* InterfaceController.swift in Sources */,
+				1FDCB5DA1EE1ADE60010F61B /* TimerInterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
