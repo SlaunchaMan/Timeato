@@ -9,7 +9,7 @@
 import Foundation
 import WatchKit
 
-let defaultTimerLength = 1 // minutes
+let timerLength = 25 // minutes
 
 class TimerInterfaceController: WKInterfaceController {
 
@@ -31,7 +31,7 @@ class TimerInterfaceController: WKInterfaceController {
     }()
     
     var timerComponents: DateComponents {
-        return DateComponents(minute: defaultTimerLength, second: 0)
+        return DateComponents(minute: timerLength, second: 0)
     }
     
     var timerCompletionTimer: Timer?
