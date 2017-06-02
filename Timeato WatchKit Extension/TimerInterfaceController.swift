@@ -94,4 +94,10 @@ class TimerInterfaceController: WKInterfaceController {
         timerCompletionTimer = nil
     }
     
+    @IBAction func timerSettingsMenuItemSelected() {
+        presentController(
+            withName: TimerSettingsInterfaceController.storyboardIdentifier,
+            context: nil)
+    }
+    
 }

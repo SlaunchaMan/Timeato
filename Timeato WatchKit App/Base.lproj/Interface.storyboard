@@ -38,6 +38,15 @@
                             </connections>
                         </button>
                     </items>
+                    <menu key="menu" id="gjU-dF-a8i">
+                        <items>
+                            <menuItem title="Timer Settings" icon="more" id="47R-ET-hIk">
+                                <connections>
+                                    <action selector="timerSettingsMenuItemSelected" destination="AgC-eL-Hgc" id="ESP-iX-4ZC"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
                     <connections>
                         <outlet property="cancelTimerButton" destination="0GW-Rj-Qo0" id="C5f-eo-JvA"/>
                         <outlet property="startTimerButton" destination="scS-2Z-acq" id="mug-oi-vOr"/>
@@ -47,6 +56,42 @@
                 </controller>
             </objects>
             <point key="canvasLocation" x="220" y="345"/>
+        </scene>
+        <!--Done-->
+        <scene sceneID="i7q-oL-ZHh">
+            <objects>
+                <controller identifier="TimerSettings" title="Done" id="0xq-zN-AbM" customClass="TimerSettingsInterfaceController" customModule="Timeato_WatchKit_App" customModuleProvider="target">
+                    <items>
+                        <group width="1" height="1" heightAdjustment="-40" alignment="center" layout="vertical" id="G1y-o4-x7m">
+                            <items>
+                                <label alignment="center" verticalAlignment="center" text="25:00" id="dTM-Yh-095">
+                                    <fontDescription key="font" type="boldSystem" pointSize="48"/>
+                                </label>
+                            </items>
+                        </group>
+                        <group width="1" alignment="left" spacing="20" id="snf-Vz-RLq">
+                            <items>
+                                <button width="0.5" height="40" alignment="left" verticalAlignment="bottom" title="-" id="SNg-TN-SWo">
+                                    <connections>
+                                        <action selector="decrementTimerButtonPressed" destination="0xq-zN-AbM" id="Ljh-Ta-PZU"/>
+                                    </connections>
+                                </button>
+                                <button width="0.5" height="40" alignment="right" verticalAlignment="bottom" title="+" id="aoA-AP-vcm">
+                                    <connections>
+                                        <action selector="incrementTimerButtonPressed" destination="0xq-zN-AbM" id="EuF-IR-dx2"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="decrementTimerButton" destination="SNg-TN-SWo" id="sls-Mm-pd2"/>
+                        <outlet property="incrementTimerButton" destination="aoA-AP-vcm" id="OVG-jF-fuE"/>
+                        <outlet property="timerLabel" destination="dTM-Yh-095" id="VZG-HJ-VSD"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="468" y="345"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">
