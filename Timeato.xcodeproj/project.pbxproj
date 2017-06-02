@@ -81,7 +81,6 @@
 		1FDCB5CB1EE1ADE60010F61B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FDCB5CD1EE1ADE60010F61B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FDCB5D21EE1ADE60010F61B /* Timeato WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Timeato WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1FDCB5D81EE1ADE60010F61B /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		1FDCB5D91EE1ADE60010F61B /* TimerInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerInterfaceController.swift; sourceTree = "<group>"; };
 		1FDCB5DB1EE1ADE60010F61B /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		1FDCB5DF1EE1ADE60010F61B /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
@@ -160,17 +159,8 @@
 				1FDCB5DF1EE1ADE60010F61B /* ComplicationController.swift */,
 				1FDCB5E11EE1ADE60010F61B /* Assets.xcassets */,
 				1FDCB5E31EE1ADE60010F61B /* Info.plist */,
-				1FDCB5D71EE1ADE60010F61B /* Supporting Files */,
 			);
 			path = "Timeato WatchKit Extension";
-			sourceTree = "<group>";
-		};
-		1FDCB5D71EE1ADE60010F61B /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				1FDCB5D81EE1ADE60010F61B /* PushNotificationPayload.apns */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
