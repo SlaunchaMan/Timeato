@@ -8,6 +8,7 @@
 
 import Foundation
 import WatchKit
+import UserNotifications
 
 class TimerInterfaceController: WKInterfaceController {
 
@@ -21,6 +22,7 @@ class TimerInterfaceController: WKInterfaceController {
     // MARK:- Instance Properties
     
     var timerCompletionTimer: Timer?
+    var timerEndDate: Date?
     
     // MARK:- WKInterfaceControllerMethods
     
@@ -65,15 +67,59 @@ class TimerInterfaceController: WKInterfaceController {
         timer?.setHidden(false)
         
         timer?.setDate(timerEndDate)
+        self.timerEndDate = timerEndDate
         
-        let timeInterval = timerEndDate.timeIntervalSince(Date())
+        let timeInterval = timerEndDate.timeIntervalSinceNow
         
         timerCompletionTimer =
-            Timer.scheduledTimer(withTimeInterval: timeInterval,
-                                 repeats: false) { [weak self] (timer) in
-                                    WKInterfaceDevice.current().play(.notification)
-                                    
-                                    self?.cancelTimer()
+            Timer.scheduledTimer(timeInterval: timeInterval,
+                                 target: self,
+                                 selector: #selector(timerCompletionTimerFired(_:)),
+                                 userInfo: nil,
+                                 repeats: false)
+        
+        if #available(watchOSApplicationExtension 3.0, *) {
+            UNUserNotificationCenter.current()
+                .requestAuthorization(options: [.alert, .sound]) { (allow, error) in
+                    if allow {
+                        self.scheduleNotification()
+                    }
+                    else if let error = error {
+                        NSLog("Error authorizing notifications: %@",
+                              error.localizedDescription)
+                    }
+            }
+        }
+    }
+    
+    @objc func timerCompletionTimerFired(_ timer: Timer) {
+        cancelTimer()
+    }
+    
+    @available(watchOSApplicationExtension 3.0, *)
+    func scheduleNotification() {
+        guard let timerEndDate = timerEndDate else { return }
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Timer Done"
+        content.body = "Your timer has finished."
+        content.sound = .default()
+        
+        let timeInterval = timerEndDate.timeIntervalSinceNow
+        
+        let trigger =
+            UNTimeIntervalNotificationTrigger(timeInterval: timeInterval,
+                                              repeats: false)
+        
+        let request = UNNotificationRequest(identifier: UUID().uuidString,
+                                            content: content,
+                                            trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request) { (error) in
+            if let error = error {
+                NSLog("Error adding notification request: %@",
+                      error.localizedDescription)
+            }
         }
     }
     

@@ -20,7 +20,6 @@
 		1FDCB5D31EE1ADE60010F61B /* Timeato WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1FDCB5D21EE1ADE60010F61B /* Timeato WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1FDCB5DA1EE1ADE60010F61B /* TimerInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDCB5D91EE1ADE60010F61B /* TimerInterfaceController.swift */; };
 		1FDCB5DC1EE1ADE60010F61B /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDCB5DB1EE1ADE60010F61B /* ExtensionDelegate.swift */; };
-		1FDCB5DE1EE1ADE60010F61B /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDCB5DD1EE1ADE60010F61B /* NotificationController.swift */; };
 		1FDCB5E01EE1ADE60010F61B /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDCB5DF1EE1ADE60010F61B /* ComplicationController.swift */; };
 		1FDCB5E21EE1ADE60010F61B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FDCB5E11EE1ADE60010F61B /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -85,7 +84,6 @@
 		1FDCB5D81EE1ADE60010F61B /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		1FDCB5D91EE1ADE60010F61B /* TimerInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerInterfaceController.swift; sourceTree = "<group>"; };
 		1FDCB5DB1EE1ADE60010F61B /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
-		1FDCB5DD1EE1ADE60010F61B /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		1FDCB5DF1EE1ADE60010F61B /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		1FDCB5E11EE1ADE60010F61B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FDCB5E31EE1ADE60010F61B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -159,7 +157,6 @@
 				1FDCB5D91EE1ADE60010F61B /* TimerInterfaceController.swift */,
 				1F6390821EE1B6250050CBD6 /* TimerSettingsInterfaceController.swift */,
 				1FDCB5DB1EE1ADE60010F61B /* ExtensionDelegate.swift */,
-				1FDCB5DD1EE1ADE60010F61B /* NotificationController.swift */,
 				1FDCB5DF1EE1ADE60010F61B /* ComplicationController.swift */,
 				1FDCB5E11EE1ADE60010F61B /* Assets.xcassets */,
 				1FDCB5E31EE1ADE60010F61B /* Info.plist */,
@@ -324,7 +321,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F6390851EE1B76B0050CBD6 /* TimerSettings.swift in Sources */,
-				1FDCB5DE1EE1ADE60010F61B /* NotificationController.swift in Sources */,
 				1FDCB5E01EE1ADE60010F61B /* ComplicationController.swift in Sources */,
 				1FDCB5DC1EE1ADE60010F61B /* ExtensionDelegate.swift in Sources */,
 				1F6390831EE1B6250050CBD6 /* TimerSettingsInterfaceController.swift in Sources */,
@@ -481,7 +477,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
@@ -498,7 +494,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
@@ -516,7 +512,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
@@ -534,7 +530,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 3.2;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
@@ -544,6 +540,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = UCFNS9576M;
 				INFOPLIST_FILE = Timeato/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.slaunchaman.Timeato;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -557,6 +554,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = UCFNS9576M;
 				INFOPLIST_FILE = Timeato/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.slaunchaman.Timeato;
 				PRODUCT_NAME = "$(TARGET_NAME)";
