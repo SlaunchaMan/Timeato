@@ -22,6 +22,7 @@
 		1FDCB5DC1EE1ADE60010F61B /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDCB5DB1EE1ADE60010F61B /* ExtensionDelegate.swift */; };
 		1FDCB5E01EE1ADE60010F61B /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDCB5DF1EE1ADE60010F61B /* ComplicationController.swift */; };
 		1FDCB5E21EE1ADE60010F61B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FDCB5E11EE1ADE60010F61B /* Assets.xcassets */; };
+		1FEBDCAC1EE1FF350096EAEC /* WatchSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBDCAB1EE1FF350096EAEC /* WatchSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		1FDCB5DF1EE1ADE60010F61B /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		1FDCB5E11EE1ADE60010F61B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FDCB5E31EE1ADE60010F61B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1FEBDCAB1EE1FF350096EAEC /* WatchSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,9 +133,9 @@
 			children = (
 				1FDCB5B41EE1ADE60010F61B /* AppDelegate.swift */,
 				1FDCB5B61EE1ADE60010F61B /* ViewController.swift */,
-				1FDCB5B81EE1ADE60010F61B /* Main.storyboard */,
 				1FDCB5BB1EE1ADE60010F61B /* Assets.xcassets */,
 				1FDCB5BD1EE1ADE60010F61B /* LaunchScreen.storyboard */,
+				1FDCB5B81EE1ADE60010F61B /* Main.storyboard */,
 				1FDCB5C01EE1ADE60010F61B /* Info.plist */,
 			);
 			path = Timeato;
@@ -142,8 +144,8 @@
 		1FDCB5C71EE1ADE60010F61B /* Timeato WatchKit App */ = {
 			isa = PBXGroup;
 			children = (
-				1FDCB5C81EE1ADE60010F61B /* Interface.storyboard */,
 				1FDCB5CB1EE1ADE60010F61B /* Assets.xcassets */,
+				1FDCB5C81EE1ADE60010F61B /* Interface.storyboard */,
 				1FDCB5CD1EE1ADE60010F61B /* Info.plist */,
 			);
 			path = "Timeato WatchKit App";
@@ -152,11 +154,12 @@
 		1FDCB5D61EE1ADE60010F61B /* Timeato WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				1F6390841EE1B76B0050CBD6 /* TimerSettings.swift */,
-				1FDCB5D91EE1ADE60010F61B /* TimerInterfaceController.swift */,
-				1F6390821EE1B6250050CBD6 /* TimerSettingsInterfaceController.swift */,
-				1FDCB5DB1EE1ADE60010F61B /* ExtensionDelegate.swift */,
 				1FDCB5DF1EE1ADE60010F61B /* ComplicationController.swift */,
+				1FDCB5DB1EE1ADE60010F61B /* ExtensionDelegate.swift */,
+				1FDCB5D91EE1ADE60010F61B /* TimerInterfaceController.swift */,
+				1F6390841EE1B76B0050CBD6 /* TimerSettings.swift */,
+				1F6390821EE1B6250050CBD6 /* TimerSettingsInterfaceController.swift */,
+				1FEBDCAB1EE1FF350096EAEC /* WatchSettings.swift */,
 				1FDCB5E11EE1ADE60010F61B /* Assets.xcassets */,
 				1FDCB5E31EE1ADE60010F61B /* Info.plist */,
 			);
@@ -314,6 +317,7 @@
 				1FDCB5E01EE1ADE60010F61B /* ComplicationController.swift in Sources */,
 				1FDCB5DC1EE1ADE60010F61B /* ExtensionDelegate.swift in Sources */,
 				1F6390831EE1B6250050CBD6 /* TimerSettingsInterfaceController.swift in Sources */,
+				1FEBDCAC1EE1FF350096EAEC /* WatchSettings.swift in Sources */,
 				1FDCB5DA1EE1ADE60010F61B /* TimerInterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

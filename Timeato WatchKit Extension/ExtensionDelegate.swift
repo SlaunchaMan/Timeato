@@ -13,6 +13,8 @@ import UserNotifications
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
     
     func applicationDidFinishLaunching() {
+        UserDefaults.standard.registerWatchDefaults()
+        
         WCSession.default().delegate = self
         WCSession.default().activate()
         

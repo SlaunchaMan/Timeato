@@ -18,9 +18,7 @@ class TimerSettings {
     static var sharedSettings = TimerSettings()
     
     fileprivate static var initialTimerLength: Int = {
-        UserDefaults.standard.register(defaults: ["TimerLength": defaultTimerLength])
-        
-        return UserDefaults.standard.integer(forKey: "TimerLength")
+        return UserDefaults.standard.integer(forKey: .timerLength)
     }()
     
     class var timerLength: Int {
