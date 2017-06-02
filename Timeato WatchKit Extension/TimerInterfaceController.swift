@@ -9,8 +9,6 @@
 import Foundation
 import WatchKit
 
-let timerLength = 25 // minutes
-
 class TimerInterfaceController: WKInterfaceController {
 
     // MARK:- UI Elements
@@ -22,37 +20,39 @@ class TimerInterfaceController: WKInterfaceController {
     
     // MARK:- Instance Properties
     
-    lazy var timerPreviewFormatter: DateComponentsFormatter = {
-        let formatter = DateComponentsFormatter()
-        
-        formatter.unitsStyle = .positional
-        
-        return formatter
-    }()
-    
-    var timerComponents: DateComponents {
-        return DateComponents(minute: timerLength, second: 0)
-    }
-    
     var timerCompletionTimer: Timer?
     
     // MARK:- WKInterfaceControllerMethods
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
+
+        configurePreviewLabel()
+    }
+    
+    override func willActivate() {
+        super.willActivate()
         
-        timerPreviewLabel?
-            .setText(timerPreviewFormatter.string(from: timerComponents))
-        
+        configurePreviewLabel()
     }
     
     // MARK:- Methods
+    
+    func configurePreviewLabel() {
+        let timerComponents = TimerSettings.timerComponents
+        let timerPreviewFormatter = TimerSettings.timerPreviewFormatter
+        
+        timerPreviewLabel?
+            .setText(timerPreviewFormatter.string(from: timerComponents))
+    }
     
     @IBAction func startTimerButtonPressed() {
         startTimer()
     }
     
     func startTimer() {
+        let timerComponents = TimerSettings.timerComponents
+        
         guard let timerEndDate = Calendar.autoupdatingCurrent
             .date(byAdding: timerComponents, to: Date()) else { return }
         

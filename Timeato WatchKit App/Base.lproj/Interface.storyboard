@@ -16,7 +16,7 @@
                     <items>
                         <group width="1" height="1" heightAdjustment="-40" alignment="center" layout="vertical" id="MR9-o3-Neq">
                             <items>
-                                <label alignment="center" verticalAlignment="center" text="25:00" id="FBz-nK-P1Q">
+                                <label alignment="center" verticalAlignment="center" text="25:00" minimumScaleFactor="0.69999999999999996" id="FBz-nK-P1Q">
                                     <fontDescription key="font" type="boldSystem" pointSize="48"/>
                                 </label>
                                 <timer alignment="center" verticalAlignment="center" hidden="YES" enabled="YES" previewedSeconds="1500" id="2gh-t7-Hc6">
@@ -64,7 +64,7 @@
                     <items>
                         <group width="1" height="1" heightAdjustment="-40" alignment="center" layout="vertical" id="G1y-o4-x7m">
                             <items>
-                                <label alignment="center" verticalAlignment="center" text="25:00" id="dTM-Yh-095">
+                                <label alignment="center" verticalAlignment="center" text="25:00" minimumScaleFactor="0.69999999999999996" id="dTM-Yh-095">
                                     <fontDescription key="font" type="boldSystem" pointSize="48"/>
                                 </label>
                             </items>
