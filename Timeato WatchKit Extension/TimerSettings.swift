@@ -17,6 +17,11 @@ class TimerSettings {
     
     static var sharedSettings = TimerSettings()
     
+    fileprivate static var initialTimerLength: Int = {
+        UserDefaults.standard.register(defaults: ["TimerLength": defaultTimerLength])
+        
+        return UserDefaults.standard.integer(forKey: "TimerLength")
+    }()
     
     class var timerLength: Int {
         return sharedSettings.timerLength
@@ -36,7 +41,11 @@ class TimerSettings {
     
     // MARK:- Instance Properties
     
-    var timerLength = defaultTimerLength
+    var timerLength = TimerSettings.initialTimerLength {
+        didSet {
+            UserDefaults.standard.set(timerLength, forKey: "TimerLength")
+        }
+    }
     
     lazy var timerPreviewFormatter: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
@@ -57,7 +66,7 @@ class TimerSettings {
     // MARK:- Methods
     
     private init() {
-        
+
     }
     
     func incrementTimer() {
