@@ -15,8 +15,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     func applicationDidFinishLaunching() {
         UserDefaults.standard.registerWatchDefaults()
         
-        WCSession.default().delegate = self
-        WCSession.default().activate()
+        WCSession.default.delegate = self
+        WCSession.default.activate()
         
         if #available(watchOSApplicationExtension 3.0, *) {
             UNUserNotificationCenter.current().delegate = self

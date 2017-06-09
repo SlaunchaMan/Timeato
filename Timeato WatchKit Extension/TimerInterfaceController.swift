@@ -12,10 +12,9 @@ import UserNotifications
 import WatchConnectivity
 
 class TimerInterfaceController: WKInterfaceController {
-
+    
     // MARK:- UI Elements
     
-    @IBOutlet weak var timerPreviewLabel: WKInterfaceLabel?
     @IBOutlet weak var timer: WKInterfaceTimer?
     @IBOutlet weak var startTimerButton: WKInterfaceButton?
     @IBOutlet weak var cancelTimerButton: WKInterfaceButton?
@@ -27,27 +26,13 @@ class TimerInterfaceController: WKInterfaceController {
     
     // MARK:- WKInterfaceControllerMethods
     
-    override func awake(withContext context: Any?) {
-        super.awake(withContext: context)
-
-        configurePreviewLabel()
-    }
-    
     override func willActivate() {
         super.willActivate()
         
-        configurePreviewLabel()
+        configureTimer()
     }
     
     // MARK:- Methods
-    
-    func configurePreviewLabel() {
-        let timerComponents = TimerSettings.timerComponents
-        let timerPreviewFormatter = TimerSettings.timerPreviewFormatter
-        
-        timerPreviewLabel?
-            .setText(timerPreviewFormatter.string(from: timerComponents))
-    }
     
     @IBAction func startTimerButtonPressed() {
         startTimer()
@@ -56,18 +41,17 @@ class TimerInterfaceController: WKInterfaceController {
     func startTimer() {
         let timerComponents = TimerSettings.timerComponents
         
-        guard let timerEndDate = Calendar.autoupdatingCurrent
-            .date(byAdding: timerComponents, to: Date()) else { return }
+        guard let timerEndDate = Calendar.current
+            .date(byAdding: timerComponents,
+                  to: Date()) else { return }
         
         WKInterfaceDevice.current().play(.start)
         
         startTimerButton?.setHidden(true)
         cancelTimerButton?.setHidden(false)
         
-        timerPreviewLabel?.setHidden(true)
-        timer?.setHidden(false)
-        
         timer?.setDate(timerEndDate)
+        timer?.start()
         self.timerEndDate = timerEndDate
         
         let timeInterval = timerEndDate.timeIntervalSinceNow
@@ -79,10 +63,10 @@ class TimerInterfaceController: WKInterfaceController {
                                  userInfo: nil,
                                  repeats: false)
         
-        WCSession.default().sendMessage(["EndDate": timerEndDate],
-                                        replyHandler: nil) { (error) in
-                                            NSLog("Error sending message: %@",
-                                                  error.localizedDescription)
+        WCSession.default.sendMessage(["EndDate": timerEndDate],
+                                      replyHandler: nil) { (error) in
+                                        NSLog("Error sending message: %@",
+                                              error.localizedDescription)
         }
         
         if #available(watchOSApplicationExtension 3.0, *) {
@@ -114,9 +98,8 @@ class TimerInterfaceController: WKInterfaceController {
         
         let timeInterval = timerEndDate.timeIntervalSinceNow
         
-        let trigger =
-            UNTimeIntervalNotificationTrigger(timeInterval: timeInterval,
-                                              repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval,
+                                                        repeats: false)
         
         let request = UNNotificationRequest(identifier: UUID().uuidString,
                                             content: content,
@@ -137,20 +120,35 @@ class TimerInterfaceController: WKInterfaceController {
     }
     
     func cancelTimer() {
-        timer?.setHidden(true)
-        timerPreviewLabel?.setHidden(false)
-        
         cancelTimerButton?.setHidden(true)
         startTimerButton?.setHidden(false)
         
         timerCompletionTimer?.invalidate()
         timerCompletionTimer = nil
+        
+        timerEndDate = nil
+        
+        timer?.stop()
+        configureTimer()
     }
     
     @IBAction func timerSettingsMenuItemSelected() {
         presentController(
             withName: TimerSettingsInterfaceController.storyboardIdentifier,
             context: nil)
+    }
+    
+    func configureTimer() {
+        if let date = timerEndDate {
+            timer?.setDate(date)
+        }
+        else {
+            guard let date = Calendar.current.date(
+                byAdding: TimerSettings.timerComponents,
+                to: Date()) else { return }
+            
+            timer?.setDate(date + 1)
+        }
     }
     
 }

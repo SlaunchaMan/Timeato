@@ -24,8 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidFinishLaunching(_ application: UIApplication) {
         if #available(iOS 9.0, *) {
-            WCSession.default().delegate = self
-            WCSession.default().activate()
+            WCSession.default.delegate = self
+            WCSession.default.activate()
         }
         
         if useOldNotifications {
@@ -55,8 +55,8 @@ extension AppDelegate: WCSessionDelegate {
     }
     
     func sessionDidDeactivate(_ session: WCSession) {
-        WCSession.default().delegate = self
-        WCSession.default().activate()
+        WCSession.default.delegate = self
+        WCSession.default.activate()
     }
     
     func session(_ session: WCSession,

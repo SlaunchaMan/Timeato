@@ -32,15 +32,12 @@ class TimerSettings {
         return sharedSettings.timerComponents
     }
     
-    class var canDecrementTimer: Bool {
-        return sharedSettings.canDecrementTimer
-    }
-    
     // MARK:- Instance Properties
     
     var timerLength = TimerSettings.initialTimerLength {
         didSet {
-            UserDefaults.standard.set(timerLength, forKey: "TimerLength")
+            UserDefaults.standard.set(timerLength,
+                                      forKey: .timerLength)
         }
     }
     
@@ -56,26 +53,10 @@ class TimerSettings {
         return DateComponents(minute: timerLength, second: 0)
     }
     
-    var canDecrementTimer: Bool {
-        return timerLength > miniumumTimerLength
-    }
-    
     // MARK:- Methods
     
     private init() {
 
     }
     
-    func incrementTimer() {
-        timerLength += 1
-    }
-    
-    func decrementTimer() {
-        let targetLength = timerLength - 1
-        
-        guard targetLength >= miniumumTimerLength else { return }
-        
-        timerLength = targetLength
-    }
-
 }

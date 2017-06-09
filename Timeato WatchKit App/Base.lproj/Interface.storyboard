@@ -1,37 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
     <device id="watch38" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="12029"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="13034"/>
     </dependencies>
     <scenes>
         <!--Timer Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller spacing="0.0" id="AgC-eL-Hgc" customClass="TimerInterfaceController" customModule="Timeato_WatchKit_App" customModuleProvider="target">
+                <controller id="AgC-eL-Hgc" customClass="TimerInterfaceController" customModule="Timeato_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <group width="1" height="1" heightAdjustment="-40" alignment="center" layout="vertical" id="MR9-o3-Neq">
+                        <group width="1" height="1" heightAdjustment="-43" alignment="center" layout="vertical" id="MR9-o3-Neq">
                             <items>
-                                <label alignment="center" verticalAlignment="center" text="25:00" minimumScaleFactor="0.69999999999999996" id="FBz-nK-P1Q">
-                                    <fontDescription key="font" type="boldSystem" pointSize="48"/>
-                                </label>
-                                <timer alignment="center" verticalAlignment="center" hidden="YES" enabled="YES" previewedSeconds="1500" id="2gh-t7-Hc6">
+                                <timer alignment="center" verticalAlignment="center" previewedSeconds="1500" id="2gh-t7-Hc6">
                                     <fontDescription key="font" type="boldSystem" pointSize="48"/>
                                     <calendarUnit key="units" minute="YES" second="YES"/>
                                 </timer>
                             </items>
                         </group>
-                        <button width="1" height="40" alignment="center" verticalAlignment="bottom" title="Start Timer" id="scS-2Z-acq">
+                        <button width="1" height="43" alignment="center" verticalAlignment="bottom" title="Start Timer" id="scS-2Z-acq">
                             <color key="titleColor" red="0.26274511220000002" green="0.78431379800000001" blue="0.46274513010000001" alpha="1" colorSpace="deviceRGB"/>
                             <connections>
                                 <action selector="startTimerButtonPressed" destination="AgC-eL-Hgc" id="OLm-xZ-kE8"/>
                             </connections>
                         </button>
-                        <button width="1" height="40" alignment="center" verticalAlignment="bottom" hidden="YES" title="Cancel Timer" id="0GW-Rj-Qo0">
+                        <button width="1" height="43" alignment="center" verticalAlignment="bottom" hidden="YES" title="Cancel Timer" id="0GW-Rj-Qo0">
                             <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="cancelTimerButtonPressed" destination="AgC-eL-Hgc" id="JRM-2S-Eds"/>
@@ -51,7 +48,6 @@
                         <outlet property="cancelTimerButton" destination="0GW-Rj-Qo0" id="C5f-eo-JvA"/>
                         <outlet property="startTimerButton" destination="scS-2Z-acq" id="mug-oi-vOr"/>
                         <outlet property="timer" destination="2gh-t7-Hc6" id="DYP-5g-2GA"/>
-                        <outlet property="timerPreviewLabel" destination="FBz-nK-P1Q" id="y9U-gL-Nba"/>
                     </connections>
                 </controller>
             </objects>
@@ -62,31 +58,20 @@
             <objects>
                 <controller identifier="TimerSettings" title="Done" id="0xq-zN-AbM" customClass="TimerSettingsInterfaceController" customModule="Timeato_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <group width="1" height="1" heightAdjustment="-40" alignment="center" layout="vertical" id="G1y-o4-x7m">
+                        <group width="1" height="1" heightAdjustment="-43" alignment="center" layout="vertical" id="G1y-o4-x7m">
                             <items>
                                 <label alignment="center" verticalAlignment="center" text="25:00" minimumScaleFactor="0.69999999999999996" id="dTM-Yh-095">
                                     <fontDescription key="font" type="boldSystem" pointSize="48"/>
                                 </label>
                             </items>
                         </group>
-                        <group width="1" alignment="left" spacing="20" id="snf-Vz-RLq">
-                            <items>
-                                <button width="0.5" height="40" alignment="left" verticalAlignment="bottom" title="-" id="SNg-TN-SWo">
-                                    <connections>
-                                        <action selector="decrementTimerButtonPressed" destination="0xq-zN-AbM" id="Ljh-Ta-PZU"/>
-                                    </connections>
-                                </button>
-                                <button width="0.5" height="40" alignment="right" verticalAlignment="bottom" title="+" id="aoA-AP-vcm">
-                                    <connections>
-                                        <action selector="incrementTimerButtonPressed" destination="0xq-zN-AbM" id="EuF-IR-dx2"/>
-                                    </connections>
-                                </button>
-                            </items>
-                        </group>
+                        <slider width="1" alignment="left" verticalAlignment="bottom" value="25" minimum="5" maximum="60" steps="11" id="fLk-3G-6gp">
+                            <connections>
+                                <action selector="sliderValueChanged:" destination="0xq-zN-AbM" id="CCq-4x-5nl"/>
+                            </connections>
+                        </slider>
                     </items>
                     <connections>
-                        <outlet property="decrementTimerButton" destination="SNg-TN-SWo" id="sls-Mm-pd2"/>
-                        <outlet property="incrementTimerButton" destination="aoA-AP-vcm" id="OVG-jF-fuE"/>
                         <outlet property="timerLabel" destination="dTM-Yh-095" id="VZG-HJ-VSD"/>
                     </connections>
                 </controller>

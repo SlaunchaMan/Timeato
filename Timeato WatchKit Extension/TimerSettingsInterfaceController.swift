@@ -43,20 +43,9 @@ class TimerSettingsInterfaceController: WKInterfaceController {
             .setText(timerPreviewFormatter.string(from: timerComponents))
     }
     
-    func configureDecrementButton() {
-        decrementTimerButton?.setEnabled(TimerSettings.canDecrementTimer)
-    }
-    
-    @IBAction func incrementTimerButtonPressed() {
-        TimerSettings.sharedSettings.incrementTimer()
-        configureDecrementButton()
+    @IBAction func sliderValueChanged(_ value: Float) {
+        TimerSettings.sharedSettings.timerLength = Int(value)
         configureTimerLabel()
     }
     
-    @IBAction func decrementTimerButtonPressed() {
-        TimerSettings.sharedSettings.decrementTimer()
-        configureDecrementButton()
-        configureTimerLabel()
-    }
-
 }
