@@ -1,5 +1,5 @@
 //
-//  WatchSettings.swift
+//  WatchDefaults.swift
 //  Timeato
 //
 //  Created by Jeff Kelley on 6/2/17.
@@ -32,7 +32,7 @@ extension UserDefaults {
         register(defaults: newDefaults)
     }
     
-    func set(_ value: Int, forKey key: SettingsKey) {
+    func set(_ value: Int?, forKey key: SettingsKey) {
         set(value, forKey: key.rawValue)
     }
     
@@ -40,7 +40,7 @@ extension UserDefaults {
         return integer(forKey: key.rawValue)
     }
     
-    func set(_ value: Date, forKey key: SettingsKey) {
+    func set(_ value: Date?, forKey key: SettingsKey) {
         set(value, forKey: key.rawValue)
     }
     
@@ -48,8 +48,8 @@ extension UserDefaults {
         return object(forKey: key.rawValue) as? Date
     }
     
-    func set(_ value: UUID, forKey key: SettingsKey) {
-        set(value.uuidString, forKey: key.rawValue)
+    func set(_ value: UUID?, forKey key: SettingsKey) {
+        set(value?.uuidString, forKey: key.rawValue)
     }
     
     func uuid(forKey key: SettingsKey) -> UUID? {

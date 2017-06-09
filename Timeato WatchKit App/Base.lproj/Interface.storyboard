@@ -35,15 +35,6 @@
                             </connections>
                         </button>
                     </items>
-                    <menu key="menu" id="gjU-dF-a8i">
-                        <items>
-                            <menuItem title="Timer Settings" icon="more" id="47R-ET-hIk">
-                                <connections>
-                                    <action selector="timerSettingsMenuItemSelected" destination="AgC-eL-Hgc" id="ESP-iX-4ZC"/>
-                                </connections>
-                            </menuItem>
-                        </items>
-                    </menu>
                     <connections>
                         <outlet property="cancelTimerButton" destination="0GW-Rj-Qo0" id="C5f-eo-JvA"/>
                         <outlet property="startTimerButton" destination="scS-2Z-acq" id="mug-oi-vOr"/>
@@ -73,6 +64,7 @@
                     </items>
                     <connections>
                         <outlet property="timerLabel" destination="dTM-Yh-095" id="VZG-HJ-VSD"/>
+                        <outlet property="timerSlider" destination="fLk-3G-6gp" id="isw-Dd-CkW"/>
                     </connections>
                 </controller>
             </objects>

@@ -19,136 +19,65 @@ class TimerInterfaceController: WKInterfaceController {
     @IBOutlet weak var startTimerButton: WKInterfaceButton?
     @IBOutlet weak var cancelTimerButton: WKInterfaceButton?
     
-    // MARK:- Instance Properties
+    // MARK:- Properties
     
-    var timerCompletionTimer: Timer?
-    var timerEndDate: Date?
+    var timerObservation: NSKeyValueObservation?
     
     // MARK:- WKInterfaceControllerMethods
     
+    override func awake(withContext context: Any?) {
+        timerObservation = TimerController.sharedController
+            .observe(\.currentTimer) { [weak self] (_, _) in
+                self?.configureUI()
+        }
+    }
+    
     override func willActivate() {
-        super.willActivate()
-        
-        configureTimer()
+        configureUI()
     }
     
     // MARK:- Methods
     
+    func configureUI() {
+        clearAllMenuItems()
+        
+        if let currentTimer = TimerController.sharedController.currentTimer {
+            startTimerButton?.setHidden(true)
+            cancelTimerButton?.setHidden(false)
+            
+            timer?.setDate(currentTimer.endDate)
+            timer?.start()
+        }
+        else {
+            startTimerButton?.setHidden(false)
+            cancelTimerButton?.setHidden(true)
+            
+            timer?.stop()
+            
+            if let date = Calendar.current.date(
+                byAdding: TimerSettings.timerComponents,
+                to: Date()) {
+                timer?.setDate(date + 1)
+            }
+            
+            addMenuItem(with: .more,
+                        title: "Timer Settings",
+                        action: #selector(timerSettingsMenuItemSelected))
+        }
+    }
+    
     @IBAction func startTimerButtonPressed() {
-        startTimer()
-    }
-    
-    func startTimer() {
-        let timerComponents = TimerSettings.timerComponents
-        
-        guard let timerEndDate = Calendar.current
-            .date(byAdding: timerComponents,
-                  to: Date()) else { return }
-        
-        WKInterfaceDevice.current().play(.start)
-        
-        startTimerButton?.setHidden(true)
-        cancelTimerButton?.setHidden(false)
-        
-        timer?.setDate(timerEndDate)
-        timer?.start()
-        self.timerEndDate = timerEndDate
-        
-        let timeInterval = timerEndDate.timeIntervalSinceNow
-        
-        timerCompletionTimer =
-            Timer.scheduledTimer(timeInterval: timeInterval,
-                                 target: self,
-                                 selector: #selector(timerCompletionTimerFired(_:)),
-                                 userInfo: nil,
-                                 repeats: false)
-        
-        WCSession.default.sendMessage(["EndDate": timerEndDate],
-                                      replyHandler: nil) { (error) in
-                                        NSLog("Error sending message: %@",
-                                              error.localizedDescription)
-        }
-        
-        if #available(watchOSApplicationExtension 3.0, *) {
-            UNUserNotificationCenter.current()
-                .requestAuthorization(options: [.alert, .sound]) { (allow, error) in
-                    if allow {
-                        self.scheduleNotification()
-                    }
-                    else if let error = error {
-                        NSLog("Error authorizing notifications: %@",
-                              error.localizedDescription)
-                    }
-            }
-        }
-    }
-    
-    @objc func timerCompletionTimerFired(_ timer: Timer) {
-        cancelTimer()
-    }
-    
-    @available(watchOSApplicationExtension 3.0, *)
-    func scheduleNotification() {
-        guard let timerEndDate = timerEndDate else { return }
-        
-        let content = UNMutableNotificationContent()
-        content.title = "Timer Done"
-        content.body = "Your timer has finished."
-        content.sound = .default()
-        
-        let timeInterval = timerEndDate.timeIntervalSinceNow
-        
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval,
-                                                        repeats: false)
-        
-        let request = UNNotificationRequest(identifier: UUID().uuidString,
-                                            content: content,
-                                            trigger: trigger)
-        
-        UNUserNotificationCenter.current().add(request) { (error) in
-            if let error = error {
-                NSLog("Error adding notification request: %@",
-                      error.localizedDescription)
-            }
-        }
+        TimerController.sharedController.startTimer()
     }
     
     @IBAction func cancelTimerButtonPressed() {
-        WKInterfaceDevice.current().play(.stop)
-        
-        cancelTimer()
+        TimerController.sharedController.cancelTimer()
     }
     
-    func cancelTimer() {
-        cancelTimerButton?.setHidden(true)
-        startTimerButton?.setHidden(false)
-        
-        timerCompletionTimer?.invalidate()
-        timerCompletionTimer = nil
-        
-        timerEndDate = nil
-        
-        timer?.stop()
-        configureTimer()
-    }
-    
-    @IBAction func timerSettingsMenuItemSelected() {
+    @objc func timerSettingsMenuItemSelected() {
         presentController(
             withName: TimerSettingsInterfaceController.storyboardIdentifier,
             context: nil)
-    }
-    
-    func configureTimer() {
-        if let date = timerEndDate {
-            timer?.setDate(date)
-        }
-        else {
-            guard let date = Calendar.current.date(
-                byAdding: TimerSettings.timerComponents,
-                to: Date()) else { return }
-            
-            timer?.setDate(date + 1)
-        }
     }
     
 }

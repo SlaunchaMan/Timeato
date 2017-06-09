@@ -16,36 +16,38 @@ class TimerSettingsInterfaceController: WKInterfaceController {
     // MARK:- UI Elements
     
     @IBOutlet weak var timerLabel: WKInterfaceLabel?
-    @IBOutlet weak var incrementTimerButton: WKInterfaceButton?
-    @IBOutlet weak var decrementTimerButton: WKInterfaceButton?
+    @IBOutlet weak var timerSlider: WKInterfaceSlider?
     
     // MARK:- WKInterfaceController Methods
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
-        configureTimerLabel()
+        configureUI()
     }
     
     override func willActivate() {
         super.willActivate()
         
-        configureTimerLabel()
+        configureUI()
     }
     
     // MARK:- Methods
     
-    func configureTimerLabel() {
+    func configureUI() {
         let timerComponents = TimerSettings.timerComponents
         let timerPreviewFormatter = TimerSettings.timerPreviewFormatter
         
-        timerLabel?
-            .setText(timerPreviewFormatter.string(from: timerComponents))
+        timerLabel?.setText(timerPreviewFormatter.string(
+            from: timerComponents))
+        
+        let timerLength = TimerSettings.sharedSettings.timerLength
+        timerSlider?.setValue(Float(timerLength))
     }
     
     @IBAction func sliderValueChanged(_ value: Float) {
         TimerSettings.sharedSettings.timerLength = Int(value)
-        configureTimerLabel()
+        configureUI()
     }
     
 }
