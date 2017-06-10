@@ -12,6 +12,7 @@ fileprivate let defaultTimerLength = 25 // minutes
 
 enum SettingsKey: String {
     case timerLength
+    case timerStartDate
     case timerEndDate
     case timerIdentifier
 }

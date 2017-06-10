@@ -6,6 +6,7 @@
 //  Copyright © 2017 Jeff Kelley. All rights reserved.
 //
 
+import ClockKit
 import Foundation
 import UserNotifications
 import WatchKit
@@ -14,11 +15,21 @@ import WatchConnectivity
 @objcMembers
 class Timer: NSObject {
     let id: UUID
+    
+    let startDate: Date
     let endDate: Date
     
-    init(id: @autoclosure() -> UUID = UUID(), endDate: Date) {
+    init(id: @autoclosure() -> UUID = UUID(), startDate: Date, endDate: Date) {
         self.id = id()
+        self.startDate = startDate
         self.endDate = endDate
+    }
+    
+    var percentElapsed: Double {
+        let totalDuration = endDate.timeIntervalSince(startDate)
+        let elapsedDuration = Date().timeIntervalSince(startDate)
+        
+        return elapsedDuration / totalDuration
     }
 }
 
@@ -61,8 +72,11 @@ class TimerController: NSObject {
         let defaults = UserDefaults.standard
         
         if let id = defaults.uuid(forKey: .timerIdentifier),
+            let startDate = defaults.date(forKey: .timerStartDate),
             let endDate = defaults.date(forKey: .timerEndDate) {
-            currentTimer = Timer(id: id, endDate: endDate)
+            currentTimer = Timer(id: id,
+                                 startDate: startDate,
+                                 endDate: endDate)
         }
     }
     
@@ -126,19 +140,27 @@ class TimerController: NSObject {
         
         let timerComponents = TimerSettings.timerComponents
         
+        let startDate = Date()
+        
         guard let timerEndDate = Calendar.current
             .date(byAdding: timerComponents,
-                  to: Date()) else { return }
+                  to: startDate) else { return }
         
         WKInterfaceDevice.current().play(.start)
         
-        let timer = Timer(endDate: timerEndDate)
+        let timer = Timer(startDate: startDate,
+                          endDate: timerEndDate)
         currentTimer = timer
         
         sendTimerToPhone(timerEndDate)
         
         if #available(watchOSApplicationExtension 3.0, *) {
             createTimerEndNotification()
+        }
+        
+        let complicationServer = CLKComplicationServer.sharedInstance()
+        for complication in complicationServer.activeComplications ?? [] {
+            complicationServer.extendTimeline(for: complication)
         }
     }
     
@@ -149,6 +171,11 @@ class TimerController: NSObject {
         WKInterfaceDevice.current().play(.stop)
         
         currentTimer = nil
+        
+        let complicationServer = CLKComplicationServer.sharedInstance()
+        for complication in complicationServer.activeComplications ?? [] {
+            complicationServer.reloadTimeline(for: complication)
+        }
     }
     
     @objc private func timerEnded(_ timer: Foundation.Timer) {
