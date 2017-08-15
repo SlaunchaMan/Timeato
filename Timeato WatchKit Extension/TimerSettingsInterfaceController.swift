@@ -46,7 +46,7 @@ class TimerSettingsInterfaceController: WKInterfaceController {
     }
     
     @IBAction func sliderValueChanged(_ value: Float) {
-        TimerSettings.sharedSettings.timerLength = Int(value)
+        TimerSettings.sharedSettings.timerLength = Int(max(value, 1))
         configureUI()
     }
     

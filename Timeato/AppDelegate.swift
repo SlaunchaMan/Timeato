@@ -61,6 +61,10 @@ extension AppDelegate: WCSessionDelegate {
     
     func session(_ session: WCSession,
                  didReceiveMessage message: [String : Any]) {
+        if let viewController = window?.rootViewController as? ViewController {
+            viewController.timerEndDate = message["EndDate"] as? Date
+        }
+        
         if useOldNotifications, let timerEndDate = message["EndDate"] as? Date {
             let notification = UILocalNotification()
             notification.alertTitle = "Timer Finished"

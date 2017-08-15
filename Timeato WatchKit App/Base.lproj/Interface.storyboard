@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="13178.6" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
     <device id="watch38" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="13034"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="13045"/>
     </dependencies>
     <scenes>
         <!--Timer Interface Controller-->
@@ -56,7 +56,7 @@
                                 </label>
                             </items>
                         </group>
-                        <slider width="1" alignment="left" verticalAlignment="bottom" value="25" minimum="5" maximum="60" steps="11" id="fLk-3G-6gp">
+                        <slider width="1" alignment="left" verticalAlignment="bottom" value="25" maximum="60" steps="12" id="fLk-3G-6gp">
                             <connections>
                                 <action selector="sliderValueChanged:" destination="0xq-zN-AbM" id="CCq-4x-5nl"/>
                             </connections>

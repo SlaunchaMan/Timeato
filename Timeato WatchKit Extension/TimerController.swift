@@ -52,11 +52,6 @@ class TimerController: NSObject {
                 RunLoop.current.add(timerTimer!,
                                     forMode: .commonModes)
             }
-            if let oldTimer = oldValue {
-                if #available(watchOSApplicationExtension 3.0, *) {
-                    cancelNotification(for: oldTimer.id)
-                }
-            }
             
             UserDefaults.standard.set(currentTimer?.id,
                                       forKey: .timerIdentifier)
@@ -148,9 +143,8 @@ class TimerController: NSObject {
         
         WKInterfaceDevice.current().play(.start)
         
-        let timer = Timer(startDate: startDate,
-                          endDate: timerEndDate)
-        currentTimer = timer
+        currentTimer = Timer(startDate: startDate,
+                             endDate: timerEndDate)
         
         sendTimerToPhone(timerEndDate)
         
@@ -166,11 +160,15 @@ class TimerController: NSObject {
     
     
     func cancelTimer() {
-        guard currentTimer != nil else { return }
+        guard let timer = currentTimer else { return }
         
         WKInterfaceDevice.current().play(.stop)
         
         currentTimer = nil
+        
+        if #available(watchOSApplicationExtension 3.0, *) {
+            cancelNotification(for: timer.id)
+        }
         
         let complicationServer = CLKComplicationServer.sharedInstance()
         for complication in complicationServer.activeComplications ?? [] {
